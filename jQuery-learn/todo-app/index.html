@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>todo-app</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="../jquery-1.12.3.min.js" type="text/javascript" charset="utf-8" async defer></script>
+</head>
+<body>
+	<div class="task-list" id="pending">
+        <h3>待处理</h3>
+    </div>
+
+    <div class="task-list" id="inProgress">
+        <h3>进行中</h3>
+    </div>
+
+    <div class="task-list" id="completed">
+        <h3>已完成</h3>
+    </div>
+
+    <div class="task-list">
+        <h3>添加项目</h3>
+        <form id="todo-form">
+            <input type="text" class="addTitle" placeholder="标题" />
+            <textarea placeholder="内容" class="addDescriptions"></textarea>
+            <input type="text" placeholder="截止日期 (月/日/年)" id="datepicker" class="addDate"/>
+            <input type="button" class="btn btn-primary" value="添加项目" id="addItem"//>
+        </form>
+
+        <input type="button" class="btn btn-primary" value="清空全部项目" />
+
+        <div id="delete-div" class="hidden">拖动到这里删除</div>
+    </div>
+</body>
+</html>
