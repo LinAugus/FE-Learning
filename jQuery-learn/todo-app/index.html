@@ -3,7 +3,7 @@
 <head>
 	<title>todo-app</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<script src="../jquery-1.12.3.min.js" type="text/javascript" charset="utf-8" async defer></script>
+	<script src="../jquery-1.12.3.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 	<div class="task-list" id="pending">
@@ -32,4 +32,10 @@
         <div id="delete-div" class="hidden">拖动到这里删除</div>
     </div>
 </body>
+<script src="app.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        new MyTodoList();
+    });
+</script>
 </html>
