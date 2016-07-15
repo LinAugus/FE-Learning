@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>七巧板</title>
+</head>
+<body>
+	<!-- 利用 canvas 制作七巧板 -->
+	<canvas id="canvas" style="display: block; margin: 60px auto;"></canvas>
+	<script>
+		window.onload = function(){
+			var canvas = document.getElementById("canvas");
+			canvas.width = 600;
+			canvas.height = 600;
+			//绘制2d图像的上下文环境
+			var context = canvas.getContext("2d");
+
+			//绘制左边平行四边形
+			context.beginPath();
+			context.lineWidth = 5;
+			context.moveTo(150,450);
+			context.lineTo(450,450);
+			context.lineTo(300,600);
+			context.lineTo(0,600);
+			context.fillStyle = "#FF1493";
+			context.strokeStyle = "#000000";
+			context.fill();
+			context.stroke();
+
+			//绘制左边的大三角形
+			context.beginPath();
+			context.lineWidth = 5;
+			context.moveTo(0,0);
+			context.lineTo(300,300);
+			context.lineTo(0,600);
+			context.fillStyle = "#0000ff";
+			context.strokeStyle = "#000000";
+			context.fill();
+			context.stroke();
+
+			//绘制右边的大三角形
+			context.beginPath();
+			context.lineWidth = 5;
+			context.moveTo(0,0);
+			context.lineTo(300,300);
+			context.lineTo(600,0);
+			context.fillStyle = "#FFFF00";
+			context.strokeStyle = "#000000";
+			context.fill();
+			context.stroke();
+
+			//绘制中间三角形
+			context.beginPath();
+			context.lineWidth = 5;
+			context.moveTo(300,300);
+			context.lineTo(150,450);
+			context.lineTo(450,450);
+			context.fillStyle = "#FF7F50";
+			context.strokeStyle = "#000000";
+			context.fill();
+			context.stroke();
+
+
+			//绘制中间小矩形
+			context.beginPath();
+			context.lineWidth = 5;
+			context.moveTo(450,150);
+			context.lineTo(300,300);
+			context.lineTo(450,450);
+			context.lineTo(600,300);
+			context.fillStyle = "#191970";
+			context.strokeStyle ="#000000";
+			context.fill();
+			context.stroke();
+
+			
+			//绘制最右边小三角形
+			context.beginPath();
+			context.lineWidth = 5;
+			context.moveTo(600,0);
+			context.lineTo(450,150);
+			context.lineTo(600,300);
+			context.fillStyle = "#A52A2A";
+			context.strokeStyle = "#000000";
+			context.fill();
+			context.stroke();
+
+			//绘制右边大三角形
+			context.beginPath();
+			context.lineWidth = 5;
+			context.moveTo(600,300);
+			context.lineTo(300,600);
+			context.lineTo(600,600);
+			context.fillStyle = "#00FFFF";
+			context.strokeStyle = "#000000";
+			context.fill();
+			context.stroke();
+
+			//绘制最外围的边框
+			context.beginPath();//开始绘制路径
+			context.lineWidth = 10;//设置线条的宽度
+			context.moveTo(0,0);//移动笔触
+			context.lineTo(600,0);//绘制线条
+			context.lineTo(600,600);
+			context.lineTo(0,600);
+			context.closePath();//封闭路径
+			context.stroke();//通过线条来绘制图形轮廓
+		};
+	</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>canvas</title>
+</head>
+<body>
+	<!-- 优化七巧板，将模型数据用数据存储起来，逐个取出并绘制。 -->
+	<canvas id="canvas" style="border: 1 px solid #aaa; display: block; margin: 50px auto">
+		当前浏览器不支持cnavas		
+	</canvas>
+	<script type="text/javascript">
+	var tangram = [
+		{
+			f:[{x: 0,y: 0},{x: 800, y: 0},{x: 400, y: 400}],
+			color: "#FEF734",
+		},
+		{
+			f:[{x: 0,y: 0},{x: 400, y: 400},{x: 0, y: 800}],
+			color: "#224AFB",
+		},
+		{
+			f:[{x: 800,y: 0},{x: 600, y: 200},{x: 800, y: 400}],
+			color: "#A82F24",
+		},
+		{
+			f:[{x: 400,y: 400},{x: 600, y: 200},{x: 800, y: 400},{x: 600, y: 600}],
+			color: "#141D71",
+		},
+		{
+			f:[{x: 400,y: 400},{x: 200, y: 600},{x: 600, y: 600}],
+			color: "#F17E4D",
+		},
+		{
+			f:[{x: 200,y:  600},{x: 600, y: 600},{x: 400, y: 800},{x: 0, y: 800}],
+			color: "##EC4F93",
+		},
+		{
+			f:[{x: 800,y: 400},{x: 400, y: 800},{x: 800, y: 800}],
+			color: "#6CF8FC",
+		},
+	];
+	window.onload = function(){
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+		canvas.width = 800;
+		canvas.height = 800;
+		for(var i = 0; i< tangram.length; i++){
+			ctx.beginPath();
+			ctx.moveTo(tangram[i].f[0].x, tangram[i].f[0].y);
+			for (var j= 1; j < tangram[i].f.length; j++){
+				ctx.lineTo(tangram[i].f[j].x, tangram[i].f[j].y);
+			}
+			ctx.closePath();
+			ctx.fillStyle = tangram[i].color;
+			ctx.fill();
+			ctx.lineWidth = 10;
+			ctx.stroke();
+		}
+		//重绘最外层边框
+		ctx.lineWidth = 20;
+		ctx.strokeRect(0,0,800,800);
+	}
+
+	</script>
+</body>
+</html>
+
+
+
+
+

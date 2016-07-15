@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>0-1canvas</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<!-- canvas 样式设定 border 设置边框为1像素，边框颜色为蓝色 -->
+	<!-- 如果不设定 canvas 大小，canvas 默认是300px宽，150px高； -->
+	<!-- 在设置 canvas 大小时，不使用 css， -->
+	<canvas id="canvas" width="200px" height="200px" style="border: 1px solid #0000ff; display: block; margin: 50px auto">
+		您的浏览器不支持canvas！
+	</canvas>
+
+	<script>
+	window.onload = function(){
+		var canas = document.getElementById("canvas");
+		canvas.width = 450;
+		canvas.height = 450;
+		// 绘制2D图像的上下文环境
+		var context = canvas.getContext("2d");
+
+		//绘制线条1
+		context.moveTo(0,0);
+		context.lineTo(100,100);
+		context.stroke();
+		//绘制线条2
+		context.moveTo(200,200);
+		context.lineTo(300,200);
+		context.lineTo(300,300);
+		context.lineTo(200,300);
+		context.lineTo(200,200);
+		context.stroke();
+		//绘制线条3
+		//beginPath()会重新绘制
+		context.moveTo(120,120);
+		context.lineTo(140,100);
+		context.moveTo(140,120);
+		context.lineTo(160,100);
+		context.moveTo(160,120);
+		context.lineTo(180,100);
+		context.stroke();
+	};
+	</script>
+
+
+</body>
+</html>

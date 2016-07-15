@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>canvas</title>
+</head>
+<body>
+	<canvas id="canvas" style="border: 1px solid #aaa; display: block; margin: 50px auto">
+		当前浏览器不支持cnavas		
+	</canvas>
+<script type="text/javascript">
+window.onload = function(){
+	var canvas = document.getElementById("canvas");
+	var ctx = canvas.getContext("2d");
+
+	canvas.width = 900;
+	canvas.height = 600;
+	//绘制矩形1
+	// ctx.strokeStyle = "blue";
+	// ctx.lineWidth = 10;
+	// drawRect(100,100,100,100,ctx);
+	// ctx.stroke();
+	// //绘制矩形2
+	// ctx.strokeRect(5,200,200,200);
+	//颜色
+	// HSL工业界的一种颜色标准
+	// H: 色调 
+	// S: 饱和度 0-100%
+	// L: 亮度 0-100%
+	// rgb(0~255,0~255,0~255)
+	// rgba(0,0,0,0-1)
+
+	//绘制线条 lineCap属性：butt(默认),round,square
+
+	// ctx.lineWidth = 1;
+	// ctx.beginPath();
+	// ctx.moveTo(100,50);
+	// ctx.lineTo(100,400);
+	// ctx.stroke();
+	// ctx.lineWidth = 1;
+	// ctx.beginPath();
+	// ctx.moveTo(500,50);
+	// ctx.lineTo(500,400);
+	// ctx.stroke();
+
+	// ctx.lineWidth = 10;
+	// ctx.beginPath();
+	// ctx.moveTo(100,100);
+	// ctx.lineTo(500,100);
+	// ctx.lineCap = "butt";
+	// ctx.stroke();
+
+	// ctx.beginPath();
+	// ctx.moveTo(100,200)
+	// ctx.lineTo(500,200);
+	// ctx.lineCap = "round";
+	// ctx.stroke();
+
+	// ctx.beginPath();
+	// ctx.moveTo(100,300);
+	// ctx.lineTo(500,300);
+	// ctx.lineCap = "square";
+	// ctx.stroke();
+
+	//lineJoin 属性
+	//lineJoin 的属性值决定了图形中两线段连接处所显示的样子。它可以是这三种之一：round, bevel 和 miter。默认是 miter。
+	// ctx.lineWidth = 10;
+	// ctx.moveTo(100,100);
+	// ctx.lineTo(100,400);
+	// ctx.lineTo(150,400);
+	// ctx.closePath();
+	// // ctx.lineJoin = "miter";
+	// // ctx.lineJoin = "round";
+	// // ctx.lineJoin = "bevel";
+	// ctx.miterLimit = 50;
+	// ctx.stroke();
+
+	//绘制中国国旗
+
+	ctx.fillStyle = "red";
+	ctx.fillRect(0,0,900,600);
+	//绘制五角星
+	//x:cos(18+i*72)*r
+	//y:-sin(54+i*72)*r
+	//角度化 num/180*Math.PI
+	//依次制定大圆和小圆的一个点
+	//400是圆的圆心点，如果不加400，则圆心点为0,0
+	// ctx.beginPath();
+	// ctx.lineJoin = "round";
+	// for (var i = 0; i < 5; i++ ) {
+	// 	ctx.lineTo(Math.cos((18+i*72)/180*Math.PI)*300 + 400,-Math.sin((18+i*72)/180*Math.PI)*300 + 400);
+	// 	ctx.lineTo(Math.cos((54+i*72)/180*Math.PI)*150 + 400,-Math.sin((54+i*72)/180*Math.PI)*150 + 400);
+	// };
+	// ctx.closePath();
+	// ctx.lineWidth = 10;
+	// ctx.fillStyle = "#000021";
+	// ctx.fill();
+
+	ctx.fillStyle = "yellow";
+
+	drawStar(ctx, 60, 120, 160, 0);
+
+	var starF = [35, 5, 335, 305];
+
+	for (var j = 0; j < starF.length; j++){
+		var rot = 18 + j * 15;
+		var x = Math.cos( starF[j]/180 * Math.PI ) * 180 + 120;
+		var y = -Math.sin( starF[j]/180 * Math.PI ) * 180 + 160;
+		drawStar(ctx, 60/2.4, x, y, rot);
+	}
+
+
+
+};
+
+
+function drawStar(ctx,R,x,y,rot){
+	ctx.beginPath();
+	for (var i = 0; i < 5; i++ ) {
+		ctx.lineTo(Math.cos((18+i*72-rot)/180*Math.PI)*R + x,-Math.sin((18+i*72-rot)/180*Math.PI)*R + y);
+		ctx.lineTo(Math.cos((54+i*72-rot)/180*Math.PI)*R/2.4 + x,-Math.sin((54+i*72-rot)/180*Math.PI)*R/2.4 + y);
+	};
+	ctx.closePath();
+	ctx.fill();
+
+}
+function drawRect(x, y, width, height, contest){
+	contest.beginPath();
+	contest.moveTo(x, y);
+	contest.lineTo(x + width, y);
+	contest.lineTo(x + width, y + height);
+	contest.lineTo(x , y + height);
+	contest.closePath();
+}
+</script>
+</body>
+</html>
