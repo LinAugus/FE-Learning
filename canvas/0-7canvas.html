@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>canvas</title>
+</head>
+<body>
+	<canvas id="canvas" style="border: 1px solid #aaa; display: block; margin: 50px auto">
+		当前浏览器不支持canvas	
+	</canvas>
+
+<script type="text/javascript">
+window.onload = function(){
+	var canvas = document.getElementById("canvas");
+	var ctx = canvas.getContext("2d");
+
+	canvas.width = 600;
+	canvas.height = 600;
+	//圆弧／圆的绘制
+	// arc(x, y, radius, startAngle, endAngle, anticlockwise)
+	// 画一个以（x,y）为圆心的以radius为半径的圆弧（圆），从startAngle开始到endAngle结束，按照anticlockwise给定的方向（默认为顺时针）来生成。
+	// 该方法有五个参数：x,y为绘制圆弧所在圆上的圆心坐标。radius为半径。startAngle以及endAngle参数用弧度定义了开始以及结束的弧度。这些都是以x轴为基准。参数anticlockwise 为一个布尔值。为true时，是逆时针方向，否则顺时针方向。
+	// 注意：arc()函数中的角度单位是弧度，不是度数。角度与弧度的js表达式:radians=(Math.PI/180)*degrees。
+
+	// ctx.save();
+	// ctx.beginPath();
+	// var x = 200, // x 坐标值
+	// 	y = 200, // y 坐标值
+	// 	radius = 50, //半径
+	// 	startAngle = 0 ; //开始点
+	// 	endAngle = Math.PI * 2; //结束点
+	// 	anticlockwise = true; //逆时针 
+	// ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+	// ctx.lineWidth = 10;
+	// ctx.fillStyle = "#ff0822";
+	// ctx.strokeStyle = "#666666";
+	// ctx.stroke();
+	// ctx.fill();
+	// ctx.restore();
+
+	//用canvas绘制电子显示的数字，首先定义2维数组，存放每个字母对应的canvas。
+	// var arr = [];
+	// for (var i = 0; i < 9; i++) {
+	// 	arr[i] = new Array();
+	// 	for (var j = 0; j < 7; j++){
+	// 		arr[i][j] = 0;
+	// 		console.log("arr["+ i +"]["+ j +"]: "+arr[i][j]);
+	// 	}
+	// };
+
+	var numberOne = [ 
+		[ 0, 0, 0, 1, 0, 0, 0 ],
+		[ 0, 0, 1, 1, 0, 0, 0 ],
+		[ 0, 1, 1, 1, 0, 0, 0 ],
+		[ 0, 0, 0, 1, 0, 0, 0 ],
+		[ 0, 0, 0, 1, 0, 0, 0 ],
+		[ 0, 0, 0, 1, 0, 0, 0 ],
+		[ 0, 0, 0, 1, 0, 0, 0 ],
+		[ 0, 0, 0, 1, 0, 0, 0 ],
+		[ 0, 0, 0, 1, 0, 0, 0 ],
+		[ 0, 0, 0, 1, 0, 0, 0 ],
+		[ 0, 0, 0, 1, 0, 0, 0 ],
+		[ 1, 1, 1, 1, 1, 1, 1 ],
+	];
+
+	
+
+
+
+}
+
+</script>
+</body>
+</html>
