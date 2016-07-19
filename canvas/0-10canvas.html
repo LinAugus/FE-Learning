@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>canvas</title>
+</head>
+<body>
+	<canvas id="canvas" width = "1024" height= "786" style="border: 1px solid #aaa; display: block; margin: 50px auto;" >
+		当前浏览器不支持canvas	
+	</canvas>
+<script type="text/javascript">
+window.onload = function(){
+	var canvas = document.getElementById("canvas");
+	var ctx = canvas.getContext("2d");
+	//Path2D对象
+	// Path2D()会返回一个新初始化的Path2D对象（可能将某一个路径作为变量——创建一个它的副本，或者将一个包含SVG path数据的字符串作为变量）。
+
+	// 创建和拷贝路径
+
+	var path1 = new Path2D();
+	path1.rect(10,10,100,100);
+
+	var path2 = new Path2D(path1);
+	path2.moveTo(220, 60);
+	path2.arc(170, 60, 50, 0, 2*Math.PI);
+
+	ctx.stroke(path2);
+
+	// 使用 SVG 路径
+	// 这是一段简单的代码片段，使用 SVG path data 创建一个 Path2D 路径。路径将会移动到点 (M10 10) ，然后向右侧水平移动80个点 (h 80)，然后向下80个点 (v 80)，然后向左80个点(h -80)，最后回到起始点(z)。
+
+	var  p = new Path2D("M250 10 h 80 v 80 h -80 Z");
+	ctx.fill(p);
+
+
+
+}
+
+</script>
+</body>
+</html>
