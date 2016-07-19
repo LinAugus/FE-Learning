@@ -6,32 +6,78 @@
 	<title>canvas</title>
 </head>
 <body>
-	<canvas id="canvas" style="border: 1px solid #aaa; display: block; margin: 50px auto">
+	<canvas id="canvas" width = "1024" height= "786" style="border: 1px solid #aaa; display: block; margin: 50px auto;" >
 		当前浏览器不支持canvas	
 	</canvas>
-
+<script src="digit.js"></script>
 <script type="text/javascript">
+
+var RADIUS = 4;
+var Margin_X = 30;
+var Margin_Y = 30;
+var endTime = new Date(2016,6,22,18,47,52);
+var curShowSeconds = 0;
+
 window.onload = function(){
 	var canvas = document.getElementById("canvas");
 	var ctx = canvas.getContext("2d");
-
-	canvas.width = 600;
-	canvas.height = 600;
-	//定义二维数组
-	var arr = [];
-	for (var i = 0; i < 9; i++) {
-		arr[i] = new Array();
-		for (var j = 0; j < 7; j++){
-			arr[i][j] = 0;
-			console.log("arr["+ i +"]["+ j +"]: "+arr[i][j]);
-		}
-	};
-
-	
-
-
-
+	curShowSeconds = getCurSeconds();
+	setInterval(function(){
+		draw(ctx);
+		update();
+	}, 500);
 }
+
+function update(){
+	var nextShowTime = getCurSeconds();
+	var nextHour = parseInt(curSeconds / 3600);
+	var nextMinute = parseInt((curSeconds - nextHour * 3600)/60 );
+	var nextSeconds = curSeconds % 60 ;
+	var curHour = parseInt(curSeconds / 3600);
+	var curMinute = parseInt((curSeconds - curHour * 3600)/60 );
+	var curSeconds = curSeconds % 60 ;
+
+	if( nextSeconds != curSeconds){
+		curShowSeconds = nextShowTime;
+	}
+}
+
+function draw(ctx){
+	ctx.clearRect(0,0,1024,786)
+	var hour = parseInt(curShowSeconds / 3600);
+	var minute = parseInt((curShowSeconds - hour * 3600)/60 );
+	var seconds = curShowSeconds % 60 ;
+	drawNum(Margin_X, Margin_Y, parseInt(hour/10), ctx);
+	drawNum(Margin_X + (RADIUS+1)*15, Margin_Y, parseInt(hour%10), ctx);
+	drawNum(Margin_X + (RADIUS+1)*30, Margin_Y, 10, ctx);
+	drawNum(Margin_X + (RADIUS+1)*45, Margin_Y, parseInt(minute/10), ctx);
+	drawNum(Margin_X + (RADIUS+1)*60, Margin_Y, parseInt(minute%10), ctx);
+	drawNum(Margin_X + (RADIUS+1)*75, Margin_Y, 10, ctx);
+	drawNum(Margin_X + (RADIUS+1)*90, Margin_Y, parseInt(seconds/10), ctx);
+	drawNum(Margin_X + (RADIUS+1)*105, Margin_Y, parseInt(seconds%10), ctx);
+}
+
+function getCurSeconds(){
+	var curTime = new Date();
+	var ret = endTime.getTime() - curTime.getTime();
+	ret = Math.round(ret/1000);
+	return ret >= 0 ? ret : 0;
+}
+
+function drawNum(x, y, num, ctx){
+	for (var i = 0; i < digit[num].length; i++){
+		for(var j = 0; j < digit[num][i].length; j++){
+			if( digit[num][i][j] == 1){
+				ctx.beginPath();
+				ctx.fillStyle = "rgb(0, 102, 153)";
+				ctx.arc(x+(RADIUS+1)*2*j+(RADIUS+1), y+(RADIUS+1)*2*i+(RADIUS+1), RADIUS, 0, Math.PI*2);
+				ctx.fill();
+				ctx.closePath();
+			}
+		}
+	}
+}
+
 
 </script>
 </body>

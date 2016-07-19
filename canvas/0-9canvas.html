@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>canvas</title>
+</head>
+<body>
+	<canvas id="canvas" width = "1024" height= "786" style="border: 1px solid #aaa; display: block; margin: 50px auto;" >
+		当前浏览器不支持canvas	
+	</canvas>
+<script type="text/javascript">
+window.onload = function(){
+	var canvas = document.getElementById("canvas");
+	var ctx = canvas.getContext("2d");
+	// 绘制圆弧
+	// arcTo(x1,y1,x2,y2,radius)
+
+
+
+	// var x0=400,
+	// 	y0=400,
+	// 	x1 = 500,
+	// 	y1 = 400,
+	// 	x2 = 500,
+	// 	y2 = 450;
+	// ctx.beginPath();
+	// ctx.moveTo(x0,y0);
+	// ctx.strokeStyle = "#f00";
+	// ctx.lineWidth = 2;
+	// ctx.arcTo(x1,y1,x2,y2,50);
+	// ctx.stroke();
+	// ctx.beginPath();
+	// ctx.strokeStyle = "rgba(0,0,0,0.5)";
+	// ctx.lineWidth = 1;
+	// ctx.moveTo(x0,y0);
+	// ctx.lineTo(x1,y1);
+	// ctx.fillText('x1,y1',x1+10,y1+10)
+	// ctx.lineTo(x2,y2);
+	// ctx.fillText('x2,y2',x2+10,y2)
+	// ctx.stroke();
+
+
+	// ctx.save();
+	// ctx.strokeRect(200,200,200,200);
+	// ctx.moveTo(300,100);
+	// ctx.lineTo(300,600);
+	// ctx.stroke();
+	// ctx.closePath();
+	// ctx.restore();
+
+
+	// ctx.beginPath();
+	// ctx.lineWidth = 4;
+	// ctx.strokeStyle = "#f23f22";
+	// ctx.moveTo(200,200);	
+	// ctx.arcTo(300,300,200,400,140);
+	// ctx.stroke();
+	// ctx.closePath();
+
+	// ctx.beginPath();
+	// ctx.lineWidth = 1;
+	// ctx.strokeStyle = "rgb(0,0,0)";
+	// ctx.moveTo(200,200);
+	// ctx.lineTo(300,300);
+	// ctx.lineTo(200,400);
+	// ctx.stroke();
+
+
+
+	// quadraticCurveTo(cp1x, cp1y, x, y)
+	// 绘制二次贝塞尔曲线，x,y为结束点，cp1x,cp1y为控制点。
+	// ctx.beginPath();
+	// ctx.moveTo(100,100);
+	// ctx.quadraticCurveTo(350,150,300,300);
+	// ctx.stroke();
+
+	// //开始点、结束点、控制点
+	// ctx.fillStyle = "#2326ff";
+	// ctx.fillRect(100,100,10,10);
+	// ctx.fillRect(300,300,10,10);
+	// ctx.fillStyle = "#ff2132";
+	// ctx.fillRect(350,150,10,10);
+
+
+	// bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)
+	// 绘制三次贝塞尔曲线，x,y为结束点，cp1x,cp1y为控制点一，cp2x,cp2y为控制点二。
+	ctx.beginPath();
+	ctx.moveTo(100,100);
+	ctx.bezierCurveTo(350,150,100,250,300,300);
+	ctx.stroke();
+
+	//开始点、结束点、控制点
+	ctx.fillStyle = "#2326ff";
+	ctx.fillRect(100,100,10,10);
+	ctx.fillRect(300,300,10,10);
+	ctx.fillStyle = "#ff2132";
+	ctx.fillRect(350,150,10,10);
+	ctx.fillRect(100,250,10,10);
+
+
+
+
+}
+
+</script>
+</body>
+</html>
