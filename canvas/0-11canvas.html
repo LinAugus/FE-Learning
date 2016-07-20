@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>canvas</title>
+</head>
+<body>
+	<canvas id="canvas" width = "1024" height= "786" style="display: block; margin: 50px auto;" >
+		当前浏览器不支持canvas	
+	</canvas>
+<script src="digit.js"></script>
+<script type="text/javascript">
+//电子时钟
+
+var RADIUS = 4;  // 圆的半径
+var Margin_X = 30;  //  离 canvas 原点的坐标值 x
+var Margin_Y = 30;  //  离 canvas 原点的坐标值 y
+
+window.onload = function(){
+	var canvas = document.getElementById("canvas");
+	var ctx = canvas.getContext("2d");
+	setInterval(function(){
+		draw(ctx);
+	}, 500);
+}
+
+
+
+function draw(ctx){
+	ctx.clearRect(0,0,1024,786);
+	var curDate = new Date();
+	var hour = curDate.getHours();
+	var minute = curDate.getMinutes();
+	var seconds = curDate.getSeconds();
+	drawNum(Margin_X, Margin_Y, parseInt(hour/10), ctx);
+	drawNum(Margin_X + (RADIUS+1)*15, Margin_Y, parseInt(hour%10), ctx);
+	drawNum(Margin_X + (RADIUS+1)*30, Margin_Y, 10, ctx);
+	drawNum(Margin_X + (RADIUS+1)*45, Margin_Y, parseInt(minute/10), ctx);
+	drawNum(Margin_X + (RADIUS+1)*60, Margin_Y, parseInt(minute%10), ctx);
+	drawNum(Margin_X + (RADIUS+1)*75, Margin_Y, 10, ctx);
+	drawNum(Margin_X + (RADIUS+1)*90, Margin_Y, parseInt(seconds/10), ctx);
+	drawNum(Margin_X + (RADIUS+1)*105, Margin_Y, parseInt(seconds%10), ctx);
+}
+
+
+function drawNum(x, y, num, ctx){
+	for (var i = 0; i < digit[num].length; i++){
+		for(var j = 0; j < digit[num][i].length; j++){
+			if( digit[num][i][j] == 1){
+				ctx.beginPath();
+				ctx.fillStyle = "rgb(0, 102, 153)";
+				ctx.arc(x+(RADIUS+1)*2*j+(RADIUS+1), y+(RADIUS+1)*2*i+(RADIUS+1), RADIUS, 0, Math.PI*2);
+				ctx.fill();
+				ctx.closePath();
+			}
+		}
+	}
+}
+
+
+</script>
+</body>
+</html>

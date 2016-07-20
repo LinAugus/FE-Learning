@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>canvas</title>
+</head>
+<body>
+	<canvas id="canvas" width = "1400" height= "786" style="display: block; margin: 50px auto;" >
+		当前浏览器不支持canvas	
+	</canvas>
+<script src="digit.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var canvas = document.getElementById("canvas");
+	var ctx = canvas.getContext("2d");
+	//文本属性  字体、对齐、基线对齐、文本方向
+
+	ctx.beginPath();
+	ctx.font = "bold 40px Hannotate TC Regular";
+	ctx.textAlign = "center";
+	ctx.fillText ('hello jaai', 200, 50 );
+	ctx.textAlign = "left";
+	ctx.fillText ('hello jaai', 200, 100 );
+	ctx.textAlign = "right";
+	ctx.fillText ('hello jaai', 200, 150 );
+
+	//基线
+	ctx.beginPath();
+	ctx.font = "bold 40px Hannotate TC Regular";
+	ctx.moveTo(0,200);
+	ctx.lineTo(1200,200);
+	ctx.stroke();
+	ctx.font = "10px Arial";
+	ctx.fillText('textBaseline', 1300, 200);
+	ctx.font = "40px Arial";
+	ctx.textBaseline = "top";
+	ctx.fillText ('hello jaai', 200, 200 );
+	ctx.textBaseline = "middle";
+	ctx.fillText ('hello jaai', 380, 200 );
+	ctx.textBaseline = "bottom";	
+	ctx.fillText ('hello jaai', 560, 200 );
+	ctx.textBaseline = "hanging";	
+	ctx.fillText ('hello jaai', 740, 200 );
+	ctx.textBaseline = "alphabetic";	
+	ctx.fillText ('hello jaai', 920, 200 );
+	ctx.textBaseline = "ideographic";	
+	ctx.fillText ('hello jaai', 1150, 200 );
+
+	//计算文本长度
+	ctx.beginPath();
+	var text = ctx.measureText('hello jaai').width;
+	ctx.font = "10px Arial";
+	ctx.fillText('长度为' + text, 200,200);
+}
+
+</script>
+</body>
+</html>

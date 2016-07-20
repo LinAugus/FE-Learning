@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>canvas</title>
+</head>
+<body>
+	<canvas id="canvas" width = "1024" height= "786" style="display: block; margin: 50px auto;" >
+		当前浏览器不支持canvas	
+	</canvas>
+<script src="linallin.js"></script>
+<script type="text/javascript">
+//点阵熊
+
+
+var RADIUS = 4;
+window.onload = function(){
+	var canvas = document.getElementById("canvas");
+	var ctx = canvas.getContext("2d");
+	draw(ctx);
+}
+
+
+
+function draw(ctx){
+
+	drawNum(100, 100, 0, ctx);
+}
+
+
+function drawNum(x, y, num, ctx){
+	for (var i = 0; i < digit[num].length; i++){
+		for(var j = 0; j < digit[num][i].length; j++){
+			if( digit[num][i][j] == 1){
+				ctx.beginPath();
+				ctx.fillStyle = "rgb(0, 102, 153)";
+				ctx.arc(x+(RADIUS+1)*2*j+(RADIUS+1), y+(RADIUS+1)*2*i+(RADIUS+1), RADIUS, 0, Math.PI*2);
+				ctx.fill();
+				ctx.closePath();
+			}
+		}
+	}
+}
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>canvas</title>
+</head>
+<body>
+	<canvas id="canvas" width = "1024" height= "786" style="display: block; margin: 50px auto;" >
+		当前浏览器不支持canvas	
+	</canvas>
+<script src="digit.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var canvas = document.getElementById("canvas");
+	var ctx = canvas.getContext("2d");
+
+	// 绘制文本
+	ctx.font = "bold 40px Arial";
+	ctx.fillStyle = "#ff1231";
+	ctx.fillText('Hello jaai', 100, 100);
+	ctx.strokeText('hello jaai', 100, 300);
+	//渐变文本
+	var lgd = ctx.createLinearGradient(0,0,900,0);
+	lgd.addColorStop(0, "red");
+	lgd.addColorStop(0.25, "pink");
+	lgd.addColorStop(0.5, "purple");
+	lgd.addColorStop(0.75, "orange");
+	lgd.addColorStop(1.0, "green");
+
+	ctx.beginPath();
+	ctx.fillStyle = lgd;
+	ctx.strokeStyle = lgd;
+	ctx.fillText('hello jaai say something /all of you ' , 100 ,200);
+	ctx.strokeText('hello jaai say something /all of you ' , 100 ,350);
+	ctx.fillText('i need 空调, 空调空调空调', 100 ,250);
+	// 文本填充图片
+	ctx.beginPath();
+	var patternImage = new Image();
+	patternImage.src = "643275.jpg";
+	patternImage.onload = function(){
+		ctx.fillStyle = patternImage;
+		ctx.fillText ('hello jaai all of you', 100, 400);
+	}
+}
+
+</script>
+</body>
+</html>
