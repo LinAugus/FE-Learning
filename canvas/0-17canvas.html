@@ -5,59 +5,80 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>canvas</title>
 </head>
-<body>
-	<canvas id="canvas" width = "1024" height= "600" style="display: block; margin: 50px auto;" >
+<body onload="renderBall()">
+	<canvas id="canvas" width = "600" height= "300" style="border: 2px solid #eee; display: block; margin: 50px auto;" >
 		当前浏览器不支持canvas	
 	</canvas>
-<script src="digit.js"></script>
 <script type="text/javascript">
-window.onload = function(){
-	var canvas = document.getElementById("canvas");
-	var ctx = canvas.getContext("2d");
-	
-	// 组合和剪裁
-	// 我们不仅可以在已有图形后面再画新图形，还可以用来遮盖，清除（比 clearRect 方法强劲得多）某些区域。
-	// globalCompositeOperation = type
-	// type:
-	// destination-over  会在原有内容之下绘制新图形。
-	// source-in  新图形会仅仅出现与原有内容重叠的部分。其它区域都变成透明的。
-	// destination-in  原有内容中与新图形重叠的部分会被保留，其它区域都变成透明的。
-	// source-out  结果是只有新图形中与原有内容不重叠的部分会被绘制出来。
-	// destination-out  原有内容中与新图形不重叠的部分会被保留
-	// source-atop  新图形中与原有内容重叠的部分会被绘制，并覆盖于原有内容之上。
-	// destination-atop  原有内容中与新内容重叠的部分会被保留，并会在原有内容之下绘制新图形
-	// lighter  两图形中重叠部分作加色处理。
-	// darker  两图形中重叠的部分作减色处理。
-	// xor  重叠的部分会变成透明。
-	// copy  只有新图形会被保留，其它都被清除掉。
-
-	ctx.save();
-	ctx.beginPath();
-	ctx.globalCompositeOperation = 'copy';
-	ctx.fillStyle = "#ff2312";
-	ctx.fillRect(100, 100, 120, 120);
-	ctx.fillStyle = "#1234ff";
-	ctx.arc(120, 120, 100, 0, Math.PI*2);
-	ctx.fill();
-	ctx.restore();
-
-
-	//裁切路径 Clipping paths
-
-	ctx.beginPath();
-	ctx.fillStyle = "#ff2312";
-	ctx.arc(600, 100, 100, 0, Math.PI*2);
-	ctx.fill();
-	ctx.clip();
-	
-	var lingrad = ctx.createLinearGradient(0,-75,0,75);
-	lingrad.addColorStop(0, '#232256');
-	lingrad.addColorStop(1, '#143778');
-	ctx.fillStyle = lingrad;
-	ctx.fillRect(600, 100, 120, 120);
-	
-
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+var raf;
+var running = false;
+// animation
+// a ball
+var ball = {
+	x: 100,
+	y: 100,
+	vx: 5,
+	vy: 1,
+	radius : 25,
+	color: 'blue',
+	draw: function(){
+		ctx.beginPath();
+		ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true);
+		ctx.closePath();
+		ctx.fillStyle = this.color;
+		ctx.fill();
+	}
 }
+// 长尾效果
+// function clear(){
+// 	ctx.fillStyle = "rgba(255,255,255,0.3)";
+// 	ctx.fillRect(0, 0, canvas.width, canvas.height);
+// }
+
+function renderBall(){
+	// clear();
+	ctx.clearRect(0, 0, canvas.width, canvas.height)
+	ball.draw();
+	ball.x += ball.vx;
+	ball.y += ball.vy;
+	if( ball.y + ball.vy > canvas.height || ball.y + ball.vy < 0 ){
+		ball.vy = -ball.vy;
+	}
+
+	if( ball.x + ball.vx > canvas.width || ball.x + ball.vx < 0 ){
+		ball.vx = -ball.vx;
+	}
+	raf = window.requestAnimationFrame(renderBall);
+}
+
+canvas.addEventListener('mouseover',function(e){
+	if(!running){
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ball.x = e.offsetX;
+		console.log(e.offsetX);
+		ball.y = e.offsetY;
+		console.log(e.offsetY);
+		ball.draw();
+	}
+	
+});
+
+canvas.addEventListener('click',function(e){
+	if(!running)
+	{
+		var raf = window.requestAnimationFrame(renderBall);
+		running = true;
+	}
+});
+
+canvas.addEventListener("mouseout",function(e){
+	window.cancelAnimationFrame(raf);
+	running = false;
+});
+
+
 </script>
 </body>
 </html>
