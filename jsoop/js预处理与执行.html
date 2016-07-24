@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>jsoop</title>
+</head>
+<body>
+<script>
+	f(); //输出f
+	g(); //报错：g is not a function
+
+	//函数声明
+	function f(){
+		console.log('f');
+	}
+	//函数表达式
+	var g = function(){
+		console.log('g');
+	}
+
+	console.log(a); // undefined
+	console.log(b);	// b is not defined
+	var a = 5;
+	b = 5;
+
+	alert(a);  // undefined
+	alert(b);	// 报错 b in not defined
+	alert(c);	// 函数体被打印出来
+	alert(d);	// 报错
+
+	var a = 1;
+	b = 5;
+	function c(){
+		console.log('c');
+	}
+	var d = function(){
+		console.log('d');
+
+	}
+
+	//函数的预处理
+	function f(a, b){
+		alert(a);
+		alert(b);
+
+		var b = 100;
+		function a(){
+
+		}
+	}
+	f(1, 2);
+
+	//函数执行阶段
+
+	function f1(){
+		function f2(){
+			b = 100;
+		}
+		f2();
+	}
+	f1();
+	//如果没有用var声明的变量，会成为最外部执行上下文的成员
+</script>	
+</body>
+</html>
