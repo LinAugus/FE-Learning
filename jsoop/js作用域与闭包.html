@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>jsoop</title>
+</head>
+<body>
+<div id="1">1</div>
+<div id="2">2</div>
+<div id="3">3</div>
+<script>
+
+// for (var i = 1; i <= 3; i++) {
+// 	var ele = document.getElementById(i);
+// 	ele.onclick = function(){
+// 		alert(i);
+// 	}
+// };
+
+// 改进版本
+for (var i = 1; i <= 3; i++) {
+	var ele = document.getElementById(i);
+	ele.onclick = (function(id){
+		return function(){
+		alert(id);
+	}})(i);
+};
+
+// function f (){ //scope == window
+// 	//le{x =100} -> f.[[scope]]
+// 	var x =100;
+// 	function g(){  //g.[[scope]]== f.le
+// 		// le -> g.[[scope]]
+// 		console.log(x);
+// 	}
+// 	g();
+// }
+
+// g.le -> g.[[scope]] -> f.le -> f.[[scope]] == window
+
+
+//js创建函数
+
+// function f(){
+
+// }
+
+// var f = function(){
+
+// }
+
+// var f = function x(){
+
+// }
+
+// var f = new Function("","alert(fff)");
+
+
+// function f(){
+// 	var x = 100;
+// 	var g = function(){
+// 		alert(x);
+// 	}
+
+// 	g();
+// }
+// f();
+
+//用new Function创建的函数，作用域永远指向全局作用域
+// function f(){
+// 	var x = 100;
+// 	// g.[[scope]] == window
+// 	var g = new Function("", "alert(x)");
+
+// 	g();
+// }
+// f();
+
+
+// (function(){
+// 	var a = 5;
+// 	var b = 6;
+// 	function f(){
+// 		alert(a);
+// 	}
+// 	window.f = f;
+// })();
+// f();
+
+
+// 闭包的栗子
+
+// function f1(){
+// 	var a = 10;
+// 	var b = 20;
+// 	return function f2(){
+// 		console.log(a);
+// 	}
+// }
+// var result = f1();
+// result();
+
+//减少全局变量
+// function f(){
+// 	var a = 0;
+// 	return function(){
+// 		a++;
+// 		alert(a);
+// 	}
+// }
+// var result = f();
+// result();
+// result();
+
+//减少参数数量
+// function calFactory(base){
+// 	return function(max){
+// 		var total = 0;
+// 		for (var i = 1; i <= max; i++){
+// 			total +=i;
+// 		}
+// 		return total + base;
+// 	}
+// }
+
+// var adder = calFactory(2);
+// console.log(adder(3));
+
+//封装
+// (function(){
+// 	var m = 0;
+// 	function getM(){
+// 		return m;
+// 	}
+// 	function setM(val){
+// 		m = val;
+// 	}
+// 	window.g = getM;
+// 	window.f = setM;
+// })();
+
+// f(12);
+// console.log(g());
+
+// 闭包的注意点
+// function f(){
+// 	var num = 1;
+// 	function g(){
+// 		alert(num);
+// 	}
+
+// 	num++;
+// 	g(); //2
+// }
+// f();
+// function f(){
+// 	var num = 1;
+// 	return function(){
+// 		num++;
+// 		alert(num);
+// 	}
+// }
+// var result1 =f();
+// result1();
+// result1();
+// var result2 =f();
+// result2();
+// result2();
+
+</script>	
+</body>
+</html>

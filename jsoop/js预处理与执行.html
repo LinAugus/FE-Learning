@@ -51,6 +51,17 @@
 	}
 	f(1, 2);
 
+	//冲突处理
+
+	alert(f);
+	function f(){
+		console.log('ff');
+	}
+	var f = 10;
+
+	function f(){
+		console.log('fff');
+	}
 	//函数执行阶段
 
 	function f1(){
