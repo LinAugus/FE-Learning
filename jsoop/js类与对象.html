@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>jsoop</title>
+</head>
+<body>
+
+<script>
+//对象字面量形式
+// var p ={
+// 	name: "tony",
+// 	work: function(){
+// 		console.log("working....");
+// 	},
+// 	_age: 18,
+// 	get age(){
+// 		return this._age;
+// 	},
+// 	set age(val){
+// 		if( val <0 || val > 150){
+// 			throw new Error("invalid value");
+// 		}else{
+// 			this._age = val;
+// 		}
+// 	}
+// }
+// console.log(p.name);
+
+// new Object()构造器
+// Object.defineProperty()  添加属性
+// Object.defineProperties()
+// value, set, get, writable, enumerable,cconfigurable
+// var p = new Object();
+// p.name = "Tony";
+// Object.defineProperty(p, "age",{value: 18, writable: false});
+// Object.defineProperties(p, {
+// 	salary:{
+// 		value: 1000,
+// 		writable: false
+// 	},
+// 	gender:{
+// 		value: true
+// 	}
+// });
+
+//对象的遍历
+// for in 
+// Object.keys()
+// 检查对象是否有某个属性
+// in 操作符
+// Object.hasOwnProperty()
+// 删除
+// delete
+// 得到对象的属性特性描述getOwnPropertyDescriptor(obj,property)
+
+// 类型检测
+// typeof
+// instanceof
+// constructor
+// Object.prototype.toString.call()
+
+
+// 对象工厂
+// var o ={ name :"cj", age : 12}
+
+// function PersonFactory(pname, page){
+// 	return {
+// 		name: pname,
+// 		age: page
+// 	};
+// }
+
+// var p1 = PersonFactory("cj",12);
+// var p2 = PersonFactory("da",23);
+
+// 缺陷：共享变量独立，没有关系
+
+
+// 伪类模式
+只有函数有prototype属性
+function Person(){ //Class
+	var age = 30;
+	this.age = 30;
+	this.name = "tony";
+}
+Person.prototype.headCount = 1;
+var p = new Person();
+var p1 = new Person();
+
+// this
+function f(){
+	this.name = "tony";
+}
+
+var o = {
+	name: "tony",
+	print: function(){
+		console.log(this.name);
+	}
+};
+
+var ele = document.getElementById("id");
+ele.addEventListener('click',function(){
+	console.log(this);
+	//this指向dom元素
+});
+
+function log(a){
+	console.log(this[a]);
+}
+
+
+
+
+</script>	
+</body>
+</html>

@@ -11,12 +11,12 @@
 <div id="3">3</div>
 <script>
 
-// for (var i = 1; i <= 3; i++) {
-// 	var ele = document.getElementById(i);
-// 	ele.onclick = function(){
-// 		alert(i);
-// 	}
-// };
+for (var i = 1; i <= 3; i++) {
+	var ele = document.getElementById(i);
+	ele.onclick = function(){
+		alert(i);
+	}
+};
 
 // 改进版本
 for (var i = 1; i <= 3; i++) {
@@ -27,15 +27,15 @@ for (var i = 1; i <= 3; i++) {
 	}})(i);
 };
 
-// function f (){ //scope == window
-// 	//le{x =100} -> f.[[scope]]
-// 	var x =100;
-// 	function g(){  //g.[[scope]]== f.le
-// 		// le -> g.[[scope]]
-// 		console.log(x);
-// 	}
-// 	g();
-// }
+function f (){ //scope == window
+	//le{x =100} -> f.[[scope]]
+	var x =100;
+	function g(){  //g.[[scope]]== f.le
+		// le -> g.[[scope]]
+		console.log(x);
+	}
+	g();
+}
 
 // g.le -> g.[[scope]] -> f.le -> f.[[scope]] == window
 
@@ -68,14 +68,14 @@ for (var i = 1; i <= 3; i++) {
 // f();
 
 //用new Function创建的函数，作用域永远指向全局作用域
-// function f(){
-// 	var x = 100;
-// 	// g.[[scope]] == window
-// 	var g = new Function("", "alert(x)");
+function f(){
+	var x = 100;
+	// g.[[scope]] == window
+	var g = new Function("", "alert(x)");
 
-// 	g();
-// }
-// f();
+	g();
+}
+f();
 
 
 // (function(){
