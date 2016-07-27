@@ -79,39 +79,59 @@
 
 
 // 伪类模式
-只有函数有prototype属性
-function Person(){ //Class
-	var age = 30;
-	this.age = 30;
-	this.name = "tony";
-}
-Person.prototype.headCount = 1;
-var p = new Person();
-var p1 = new Person();
+// 只有函数有prototype属性
+// function Person(){ //Class
+// 	var age = 30;
+// 	this.age = 30;
+// 	this.name = "tony";
+// }
+// Person.prototype.headCount = 1;
+// var p = new Person();
+// var p1 = new Person();
 
 // this
-function f(){
-	this.name = "tony";
-}
+// function f(){
+// 	this.name = "tony";
+// }
 
-var o = {
-	name: "tony",
-	print: function(){
-		console.log(this.name);
-	}
-};
+// var o = {
+// 	name: "tony",
+// 	print: function(){
+// 		console.log(this.name);
+// 	}
+// };
 
-var ele = document.getElementById("id");
-ele.addEventListener('click',function(){
-	console.log(this);
-	//this指向dom元素
-});
+// var ele = document.getElementById("id");
+// ele.addEventListener('click',function(){
+// 	console.log(this);
+// 	//this指向dom元素
+// });
 
-function log(a){
-	console.log(this[a]);
-}
+// function log(a){
+// 	console.log(this[a]);
+// }
 
+// function p(){
+// 	this.name = "111";
+// }
+// var o ={};
+// p.call(o);
 
+//实现new
+// function Person(name, age){
+// 	this.name = name;
+// 	this.age = age;
+// }
+
+// var p1 = new Person('as',12);
+
+// function New(f){ //f is a function
+// 	return function(){
+// 		var o = {"__proto__": f.prototype};
+// 		f.apply(o, arguments);
+// 		return o;
+// 	}
+// }
 
 
 </script>	

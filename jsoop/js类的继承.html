@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>jsoop</title>
+</head>
+<body>
+
+<script>
+// 创建父类
+// 创建子类
+// 建立关系
+
+// function P(){
+
+// }
+
+// function C(){
+
+// }
+
+//inherit
+// C.prototype = P.prototype;
+
+// C.prototype = new P();
+
+
+// 道格拉斯发明
+// function F();
+// F.prototype = P.prototype;
+// var f = new F();
+// C.prototype = f;
+
+// C.prototype = Object.create(P.prototype);
+
+// 类继承的四部曲
+function Person(name, age){
+	this.name = name;
+	this.age = age;
+}
+Person.prototype.headCount = 1;
+Person.prototype.eat = function(){
+	console.log('eating...');
+}
+
+function Programmer(name, age, title){
+	Person.apply(this, arguments);
+}
+
+
+// Programmer.prototype = Object.create(Person.prototype);
+// Programmer.prototype.constructor = Programmer;
+
+createEX(Programmer,Person);
+
+Programmer.prototype.language = "js";
+Programmer.prototype.work = function(){
+	console.log('i am working code in '+ this.language);
+	Programmer.base.eat();
+}
+
+// 通用继承方法
+
+function createEX(Child, Parent){
+	function F(){};
+	F.prototype = Parent.prototype;
+	Child.prototype = new F();
+	Child.prototype.constructor = Child;
+	Child.base = Child.super = Parent.prototype;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>	
+</body>
+</html>

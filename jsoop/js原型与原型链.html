@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>jsoop</title>
+</head>
+<body>
+
+<script>
+// function F(){}
+// var f = new F();
+// f.__proto__;
+// f.__proto__.__proto__;
+// f.__proto__.__proto__.__proto__;
+
+
+// 封装
+// function Person(pname){
+// 	var age =100; //私有成员
+// 	function g(){  //私有方法
+// 		console.log("private method");
+// 	}
+// 	//公有成员和方法
+// 	this.name = pname;
+// 	this.getName = function(){
+// 		console.log(this.name);
+// 	};
+// }
+
+
+
+// function Person(pname){
+// 	var age = 100;
+// 	function pm(){
+// 		console.log(this.name);
+// 	}
+// 	this.name = pname;
+// 	this.test = function(){
+// 		console.log("public method");
+// 		// pm();
+// 		pm.call(this);
+// 	}
+// }
+
+
+// function Person(pname){
+// 	function pm(){
+// 		console.log(self.name);
+// 	}
+// 	var self = {
+// 		name: pname,
+// 		test: function(){
+// 			pm();
+// 		}
+// 	}
+// 	return self;
+// }
+
+// 继承
+// 浅拷贝
+// 有缺陷，引用类型复制的是一个引用，改变子对象会影响到父对象，这时候就需要深拷贝
+// var Person = {
+// 	name: 'cj',
+// 	age: 22,
+// 	address: {
+// 		home: 'home',
+// 		office: 'office',
+// 	}
+// 	sclools: ['x','z'],
+// };
+
+// var programer = {
+// 	language: 'js',
+// };
+
+// function extend(p, c){
+// 	var c = c || {};
+// 	for( var prop in p){
+// 		c[prop] = p[prop];
+// 	}
+// }
+
+
+// 深拷贝
+// function extendDeeply(p, c){
+// 	var c = c || {};
+// 	for (var prop in p){
+// 		if(typeof p[prop] === "object"){
+// 			c[prop] = (p[prop].constructor === Array)?[]:{};
+// 			extendDeeply(p[prop], c[prop]);
+// 		}else{
+// 			c[prop] = p[prop];
+// 		}
+// 	}
+// }
+
+//继承  
+// call形式
+// function Parent(){
+// 	this.name = "abc";
+// 	this.address = {home: "home"};
+// }
+// function Child(){
+// 	Parent.call(this);
+// 	this.language = "js"; 
+// }
+
+
+var p ={ name: 'allin'};
+
+function myCreate(p){
+	var ins;
+	function F(){};
+	F.prototype = p;
+	ins = new F();
+	return ins;
+}
+
+// 对象的__proto__指向的是对象的constructor的原型对象（prototype）
+
+// 但原型对象并不能用上面的话来说明
+
+// 原型对象的__proto__指向的是Object的prototype，而不是指向其(Object.prototype)构造器constructor  ＝＝某个函数的原型对象
+
+
+
+
+
+</script>	
+</body>
+</html>
