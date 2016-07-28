@@ -66,7 +66,7 @@
 // 	address: {
 // 		home: 'home',
 // 		office: 'office',
-// 	}
+// 	},
 // 	sclools: ['x','z'],
 // };
 
@@ -83,38 +83,37 @@
 
 
 // 深拷贝
-// function extendDeeply(p, c){
-// 	var c = c || {};
-// 	for (var prop in p){
-// 		if(typeof p[prop] === "object"){
-// 			c[prop] = (p[prop].constructor === Array)?[]:{};
-// 			extendDeeply(p[prop], c[prop]);
-// 		}else{
-// 			c[prop] = p[prop];
-// 		}
-// 	}
-// }
+function extendDeeply(p, c){
+	var c = c || {};
+	for (var prop in p){
+		if(typeof p[prop] === "object"){
+			c[prop] = (p[prop].constructor === Array)?[]:{};
+			extendDeeply(p[prop], c[prop]);
+		}else{
+			c[prop] = p[prop];
+		}
+	}
+}
 
 //继承  
-// call形式
-// function Parent(){
-// 	this.name = "abc";
-// 	this.address = {home: "home"};
-// }
-// function Child(){
-// 	Parent.call(this);
-// 	this.language = "js"; 
-// }
+call形式
+function Parent(){
+	this.name = "abc";
+	this.address = {home: "home"};
+}
+function Child(){
+	Parent.call(this);
+	this.language = "js"; 
+}
 
 
 var p ={ name: 'allin'};
 
-function myCreate(p){
-	var ins;
+function myCreate(o){
 	function F(){};
-	F.prototype = p;
-	ins = new F();
-	return ins;
+	F.prototype = o;
+	o = new F();
+	return o;
 }
 
 // 对象的__proto__指向的是对象的constructor的原型对象（prototype）
