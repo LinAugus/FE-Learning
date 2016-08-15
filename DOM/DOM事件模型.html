@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>DOM事件模型</title>
+</head>
+<body>
+<script type="text/javascript">
+// DOM事件模型
+
+// 事件的分类
+
+// 1、鼠标事件
+// click、dbclick、mousedown、mouseup、mouseover、mousemove、mouseout等
+
+// 2、键盘事件
+// kyedown、keyup、keypress等
+
+// 3、表单事件
+// select、change、submit、focus、blur等
+
+// 4、媒介事件
+// play、playing、abort、cancel等
+
+// 5、HTML5事件
+// online、offline、message、popstate等
+
+// 6、页面事件
+// load、error、resize、scroll等
+
+// 7、WebApp事件
+// orientationchange、touchstart、touchmove、touchend等
+
+// 添加事件处理程序
+
+// 1、通过节点属性显式声明
+// 如下示例代码，表示直接在HTML中，显式地为按钮绑定了click事件，当该按钮有用户点击行为时，便会触发myClickFunc方法
+
+// <button id="btnHello" onclick="myClickFunc()">ClickMe</button>
+
+// myClickFunc的定义则在js中完成，示例如下：
+
+// 事件处理程序的定义
+var myClickFunc = function(evt){
+    // TODO ...
+};
+
+// 2、通过节点属性动态绑定
+// <button id="btnHello">ClickMe</button>
+// 通过DOM操作进行动态绑定：
+// 事件处理程序的定义
+var myClickFunc = function(evt){
+    // TODO ...
+};
+ 
+// 直接给DOM节点的 onclick 方法赋值，注意这里接收的是一个function
+document.getElementById('btnHello').onclick = myClickFunc;
+
+
+// 3、通过事件监听的方式
+
+// 相比而言，是事件处理程序的升级模式，是最靠谱的绑定方式，并且能给DOM节点增加多个事件监听，但不能绑定多个onclick事件
+// <button id="btnHello">ClickMe</button>
+
+// 通过DOM操作进行动态绑定：
+// 获取btnHello节点
+var btnHello = document.getElementById('btnHello');
+ 
+// 增加第一个 click 事件监听处理程序
+btnHello.addEventListener('click',function(evt){
+    // TODO sth 1...
+},false);
+ 
+// 增加第二个 click 事件监听处理程序
+btnHello.addEventListener('click',function(evt){
+    // TODO sth 2...
+},false);
+
+// ps：通过此中形式，可以给btnHello按钮绑定任意多个click监听； 注意，执行顺序与添加顺序相关
+
+
+
+// 移除事件处理程序
+
+// 如果事件是通过onclick的方式来绑定的，要删除该处理程序，可重新给onclick赋值即可，示例如下：
+document.getElementById('btnHello').onclick = function(){}; // 空function即可
+
+// 如果事件是通过addEventListener监听方式绑定的，要删除处理程序，需要用removeEventListener进行解绑，示例如下：
+// 获取btnHello节点
+var btnHello = document.getElementById('btnHello');
+ 
+// 定义监听处理程序
+var myClickFunc1 = function(evt){
+    // TODO ...
+};
+// 增加事件监听
+btnHello.addEventListener('click',myClickFunc1,false); // 指定句柄
+ 
+// 移除事件监听
+btnHello.removeEventListener('click',myClickFunc1,false); // 指定句柄
+
+
+// 四、深入Event对象
+
+
+// Event 对象代表事件的状态，比如事件在其中发生的元素、键盘按键的状态、鼠标的位置、鼠标按钮的状态。 事件通常与函数结合使用，函数不会在事件发生前被执行！
+
+// 1、Event对象的一些重要属性和方法
+// 键盘的相关状态
+// altKey（Alt键是否被按下）、ctrlKey（Ctrl键是否被按下）、metaKey（Meta键是否被按下）、 shiftKey（Shift键是否被按下）、keyCode/which（可通过键盘码判断出具体是那个键被按下）
+
+// 鼠标的相关状态
+// button（判断是那个键被按下：左键、右键、中键）、clientX/clienY/screenX/screenY/offsetX/offsetY/x/y （获取事件触发时鼠标的具体位置）
+
+// 其他标准属性与方法
+// type、target、timeStamp、bubbles、cancelable、currentTarget、preventDefault()、stopPropagation()
+
+
+// 2、事件冒泡（传播）
+
+// 事件触发时，会从目标DOM元素向上传播，直到文档根节点，一般情况下，会是如下形式传播：
+
+// targetDOM → parentNode → ... → body → document → window
+
+// 如果希望一次事件触发能在整个DOM树上都得到响应，那么就需要用到事件冒泡的机制，如下示例代码：
+
+// <button id="btnHello">ClickMe</button>
+// 给按钮增加click监听
+document.getElementById('btnHello').addEventListener('click',function(evt){
+    alert('button clicked');
+},false);
+ 
+// 给body增加click监听
+document.body.addEventListener('click',function(evt){
+    alert('body clicked');
+},false);
+// 在这种情况下，点击按钮“ClickMe”后，其自身的click事件会被触发，同时，该事件将会继续向上传播， 所有的祖先节点都将得到事件的触发命令，并立即触发自己的click事件；所以如上代码，将会连续弹出两个alert
+
+// 有些情况下，我们的需求要求，每个事件都是独立触发，所以我们必须阻止事件冒泡，针对如上示例代码，可改造为：
+
+// 给按钮增加click监听
+document.getElementById('btnHello').addEventListener('click',function(evt){
+    alert('button clicked');
+    evt.stopPropagation(); // 这条命令就能将此次事件完全结束掉，阻止冒泡
+},false);
+ 
+// 给body增加click监听
+document.body.addEventListener('click',function(evt){
+    alert('body clicked');
+},false);
+// 此时，点击按钮后，只会触发按钮本身的click事件，得到一个alert效果；该按钮的点击事件，不会向上传播，body节点就接收不到此次事件命令。
+
+// 有两点需要注意：
+
+// 不是所有的事件都能冒泡，如：blur、focus、load、unload都不能
+// 不同的浏览器，阻止冒泡的方式也不一样，在w3c标准中，通过event.stopPropagation()完成， 在IE中则是通过自身的event.cancelBubble=true来完成
+
+// 3、事件默认行为
+
+// 在项目过程中，我们会遇到各种各样的需求，比如：
+
+// 点击form表单中的submit按钮后，表单不允许提交
+// 点击a标签后，不允许发送页面跳转
+// 对键盘进行控制，禁止输入
+// 其实，这些需求都可以通过阻止事件的默认行为来完成，具体可以看下面的这个示例：
+
+// <a id="aBaiduFe" href="http://www.baidufe.com">BaiduFe</a>
+
+// 要求：点击BaiduFe链接后，页面不能发生跳转，而是弹出一个alert
+
+// 给a标签增加click事件监听
+document.getElementById('aBaiduFe').addEventListener('click',function(evt){
+    alert('对不起，页面不会发生跳转！');
+    evt.preventDefault(); // 阻止默认行为
+},false);
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>dom操作</title>
+</head>
+<body>
+
+<script type="text/javascript">
+// !!! 查询dom节点
+// 查询id为 helloWorld 的节点
+var helloWorld = document.getElementById('helloWorld');
+ 
+// 查询页面上的所有 a 标签
+var aTags = document.getElementsByTagName('a');
+ 
+// 查询class为 .slide 的节点
+var slides = document.getElementsByClassName('slide');
+
+//querySelector   querySelectorAll
+
+//访问父节点与子节点
+// parentNode、childNodes、firstChild、lastChild
+
+// 查询id为 helloWorld 的节点
+var helloWorld = document.getElementById('helloWorld');
+ 
+// 获得helloWorld的父节点
+// 这里使用的是parentNode，在非w3c标准下还有一个parentElement，必须理解二者的区别：
+// ElementNode只是Node中的一种，nodeType为1
+var parentNodeForHelloWorld = helloWorld.parentNode;
+ 
+// 获得helloWorld的所有子节点
+var childNodesForHelloWorld = helloWorld.childNodes;
+ 
+// 获取hellWorld的第一个子节点
+var firstChildForHelloWorld = helloWorld.firstChild;
+ 
+// 获取hellWorld的最后一个子节点
+var lastChildForHelloWorld = helloWorld.lastChild;
+
+//PS:必须理解firstChild和lastChild都是获取所有类型的Node，而不仅仅是ElementNode。
+
+// 访问兄弟节点previousSibling、nextSibling
+// 查询id为 helloWorld 的节点
+var helloWorld = document.getElementById('helloWorld');
+ 
+// 获得helloWorld的前一个兄弟节点
+var previousNodeForHelloWorld = helloWorld.previousSibling;
+ 
+// 获得helloWorld的后一个兄弟子节点
+var nextNodeForHelloWorld = helloWorld.nextSibling;
+
+//PS:BTW：必须理解previousSibling和nextSibling都是获取所有类型的Node，而不仅仅是ElementNode。
+// 如果只想获取ElementNode，可以使用previousElementSibling和nextElementSilbling方法， 但这两个属性不是w3c标准，存在浏览器兼容性问题，慎用。
+
+
+// !!! 节点修改
+// 修改节点属性
+// 节点属性的修改，可以通过element.setAttribute、element.attributeName的方式进行修改
+// <a id="helloWorld" class="cls-demo red" href="http://www.baidufe.com">http://www.baidufe.com</a>
+
+// 查询id为 helloWorld 的A节点
+var helloWorld = document.getElementById('helloWorld');
+ 
+// 修改helloWorld的href值：通过element.setAttribute的形式
+helloWorld.setAttribute('href','http://www.baidu.com');
+ 
+// 修改helloWorld的href值：通过element.attributeName的形式
+helloWorld.href = 'http://www.baidu.com';
+//但是，不是所有的属性都可以直接通过element.attributeName赋值的形式来实现，比如，节点的CSS class就是一个特例：
+
+// 我们可以通过element.setAttribute的形式来修改class
+helloWorld.setAttribute('class','cls-demo-changed'); // success
+ 
+// 但我们不能通过element.attributeName的形式来修改class
+helloWorld.class = 'cls-demo-changed'; // failed
+ 
+// 对于CSS class，正确的做法是：
+helloWorld.className = 'cls-demo-changed'; // success
+
+// PS:关于节点CSS class的访问，在HTML5标准中新增了classList API，该API中新增了CSS class的add、remove、contains、item、toggle等方法
+// 通过classList的contains方法，判断节点是否包含某个CSS class
+var hasClass = helloWorld.classList.contains('red'); // true
+ 
+// 其他API可线下单独尝试
+
+
+// 修改节点内容innerHTML、innerText
+// 继续以上一小节的<a>节点作为示例
+var helloWorld = document.getElementById('helloWorld');
+ 
+// 修改链接文本为：清华大学
+helloWorld.innerHTML = '清华大学';
+// 或通过innerText属性修改
+helloWorld.innerText = '清华大学';
+ 
+// 将链接文本替换成一张图片，即插入一个<img/>标签，此时只能使用innerHTML属性
+helloWorld.innerHTML = '<img src="static/img/picture.png?v=78964693&v=59764449" alt="图片" />';
+//通过innerHTML属性，可以向节点中插入任意HTML片段，该API为w3c标准，但必须明白，不是所有标签都支持innerHTML属性
+//通过innerText属性，只能向节点内插入文本，并且不是w3c标准，所以存在浏览器兼容性问题， 比如在Firefox、Chrome等浏览器中，则是通过 textContent 来实现：
+// 标准浏览器下，通过 textContent 来修改文本内容
+helloWorld.textContent = '清华大学';
+
+// !!! 增加新节点
+// createElement、appendChild
+// <div id="helloWorld">
+//     <div id="inner"></div>
+// </div>
+
+// 获得helloWorld节点
+var helloWorld = docuement.getElementById('helloWorld');
+ 
+// 通过createElement创建img节点，并设置相关属性
+var imgElement = document.createElement('img'); // 注意API的使用方法
+imgElement.src = '/static/img/picture.png?v=78964693&v=59764449'; // 设置图片地址
+imgElement.alt = '图片';
+ 
+// 将img追加到helloWorld子节点之后
+helloWorld.appendChild(imgElement); // 采用子节点追加的方式插入文档
+
+// 当有大批量的DOM节点需要插入到文档流中，需要用DocumentFragment来实现
+// 除了通过createElement创建ElementNode之外，还可以通过document.createTextNode创建TextNode
+// 在节点的动态插入方面，除了使用appendChild之外，还可以通过element.insertBefore方法将节点插入到指定节点之前， 通过element.insertAjdacentElement方法在指定节点的指定位置处进行插入
+
+// 列举一个简易的DocumentFragment示例：
+// 创建一个文档碎片
+var docFrag = document.createDocumentFragment();
+// 在碎片上加入100个div节点
+for(var i = 0;i < 100;i++){
+    docFrag.appendChild(document.createElement('div'));
+}
+// 加docFrag加入到DOM-Tree
+document.body.appendChild(docFrag);
+
+// PS:在项目开发中，用得最多的还是createElement、appendChild，其他API一般都会进行封装后再使用
+
+
+// !!! 删除节点
+// 主要通过父节点的removeChild方法来实现
+
+// <div id="container">
+//     <div id="helloWorld"></div>
+// </div>
+
+// 现在通过下面的DOM操作，来实现hellWorld节点的删除操作
+
+// 获得待删除的节点
+var helloWorld = document.getElementById('helloWorld');
+ 
+// 调用父节点的removeChild方法来实现自身节点的删除
+helloWorld.parentNode.removeChild(helloWorld); // 注意参数
+
+// PS:目前部分高大上一点的浏览器（如Chrome）已经支持element.remove()直接移除节点本身：
+
+// document.getElementById('helloWorld').remove();
+
+
+
+
+
+// !!!DOM相关的几个重要对象
+
+// 1、window对象
+// 包括了整个WEB页面中所有可执行的Javascript API；另外，可详细了解alert()、confirm()、prompt()、close()、onload()
+
+// 2、document对象
+// DOM编程中，最常用的对象，可详细了解cookie、title、URL、write()、getElementById()
+
+// 3、navigator对象
+// 通过此对象可以获取操作系统信息、浏览器信息等，在HTML5中，还可以获取地理位置、联网状态等； 可详细了解platform、userAgent、geolocation、onLine
+
+// 4、location对象
+// 包含当前页面URL相关的信息，并能控制页面的跳转等操作，可详细了解href、hash、search、protocal、reload()、replace()； 另外，location.href值等同于document.URL
+
+
+
+
+
+</script>	
+</body>
+</html>
