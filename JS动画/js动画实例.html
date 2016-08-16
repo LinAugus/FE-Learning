@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>js动画实例</title>
+	<link rel="stylesheet" type="text/css" href="app.css">
+	<script src ="move.js"></script>
+</head>
+<body>
+	<div id = "wrap" class="wrap">
+		<div id = "box" class="box">
+			<a href="#"><span class ="icon a1">充话费</span><p>充话费</p></a>
+			<a href="#"><span class ="icon a2">游戏</span><p>游戏</p></a>
+			<a href="#"><span class ="icon a3">旅行</span><p>旅行</p></a>
+			<a href="#"><span class ="icon a4">保险</span><p>保险</p></a>
+			<a href="#"><span class ="icon a5">彩票</span><p>彩票</p></a>
+			<a href="#"><span class ="icon a6">电影</span><p>电影</p></a>
+		</div>
+	</div>
+	<script type="text/javascript">
+	window.onload = function(){
+		var wrap = document.getElementById('wrap'),
+			aIcon = wrap.getElementsByTagName('a');
+
+		for( var i =0,l = aIcon.length; i < l; i++){
+			aIcon[i].onmouseenter = function(){
+				var _this = this.getElementsByTagName('span')[0];
+				startMove(_this,{top:-10,opacity:0},function(){
+					_this.style.top = "10px";
+					startMove(_this,{top:6,opacity:100});
+				});
+			};
+		}
+	}
+	</script>
+</body>
+</html>

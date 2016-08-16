@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>js动画</title>
+	<style type="text/css" media="screen">
+		div{
+			width: 200px;
+			height: 200px;
+			background: #573;
+			color: #fff;
+			font-size: 20px;
+			text-align: center;
+			line-height: 200px;
+		}
+		
+	</style>
+</head>
+<body>
+	<div id = 'd'>
+		a div
+	</div>
+	<script type="text/javascript">
+	function getStyle(obj, attr){
+		if(obj.currentStyle){ //currentStyle针对ie
+			return obj.currentStyle[attr];  
+		}else{
+			return getComputedStyle(obj, false)[attr]; // 针对firefox浏览器
+		}
+	}
+	var oDiv = document.getElementById('d');
+	oDiv.style.fontSize = '16px';
+	console.log(oDiv.style);
+
+	console.log(getComputedStyle(oDiv,false)['font-size']);
+	console.log(getStyle(oDiv,'font-size'));
+	</script>
+</body>
+</html>

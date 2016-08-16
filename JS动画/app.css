@@ -1,0 +1,57 @@
+.wrap{
+    width: 240px;
+    height: 160px;
+    background: #fff;
+    box-shadow: 0 0 20px #c2bcbc;
+    margin-top: 100px;
+    margin-left: 40px;
+    position: relative;
+}
+.box a{
+	display: block;
+	width: 78px;
+	height: 78px;
+	float: left;
+	border: 1px solid #eaeaea;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    text-decoration: none;
+    font-size: 14px;
+    color: #999;
+    text-align: center;
+    position: relative;
+}
+.icon{
+	display: inline-block;
+    width: 24px;
+    height: 24px;
+    text-indent: -999em;
+    margin-top: 10px;
+    position: absolute;
+    top: 6px;
+    left: 30px;
+}
+.a1{
+	background: url(img.png) 0 0 no-repeat;
+}
+.a2{
+	background: url(img.png) 0 -44px no-repeat;
+}
+.a3{
+	background: url(img.png) 0 -85px no-repeat;
+}
+.a4{
+	background: url(img.png) 0 -132px no-repeat;
+}
+.a5{
+	background: url(img.png) 0 -176px no-repeat;
+}
+.a6{
+	background: url(img.png) 0 -220px no-repeat;
+}
+
+.box p{
+	margin-top: 50px;
+}
+
+
