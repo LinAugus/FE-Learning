@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>CSS3 tranisitions下的图片轮转切换效果实例页面</title>
+	<style type="text/css">
+		.trans_box{
+			width: 300px;
+			height: 600px;
+			margin: 20px;
+			overflow: hidden;
+		}
+		.trans_image_box{
+			width: 2000px;
+			/* height: 300px; */
+			/* 动画 */
+			transition: all 1s ease-out;
+			-webkit-transition: all 1s ease-out; 
+			-o-transition: all 1s ease-out; 
+			-ms-transition: all 1s ease-out; 
+
+		}
+		.trans_image{
+			width: 400px;
+			float: left;
+		}
+		.trans_image_trigger {
+		    padding-top: 10px;
+		    text-align: center;
+		}
+		.clearfix::after{
+			content: '.';
+			height: 0;
+			display: block;
+			clear: both;
+			visibility: hidden;
+		}
+	</style>
+</head>
+<body>
+	<div class="trans_box">
+    <div id="transImageBox" class="trans_image_box clearfix">
+        <img class="trans_image" src="1.jpg" />
+        <img class="trans_image" src="2.jpg" />
+        <img class="trans_image" src="3.jpg" />
+        <img class="trans_image" src="4.jpg" />
+    </div>
+    <div id="transImageTrigger" class="trans_image_trigger">
+        <a href="#1">1</a>
+        <a href="#2">2</a>
+        <a href="#3">3</a>
+        <a href="#4">4</a>
+    </div>
+</div>
+<script type="text/javascript">
+	(function(){
+		var $ = function(id){
+			return document.getElementById(id);
+		}
+		var oBox = $("transImageBox"),
+			oTrigger = $('transImageTrigger').getElementsByTagName('a'),
+			lTrigger = oTrigger.length;
+		if( oBox && lTrigger){
+			for(var i =0; i< lTrigger; i+=1){
+				oTrigger[i].onclick = function(){
+					var index = Number(this.href.replace(/.*#/g,"")) || 1;
+					oBox.style.marginLeft = (1-index)*400 + 'px';
+					return false;
+				};
+			}
+		}
+
+	})();
+</script>
+</body>
+</html>

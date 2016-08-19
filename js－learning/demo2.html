@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>CSS3 transition下的手风琴切换效果实例页面</title>
+	<style type="text/css">
+		.acco_box{
+			width: 400px;
+			border: 1px solid #a0b3d6;
+		}
+		.acco_title{
+			line-height:26px;
+			padding-left: 10px;
+			font-size: 14px;
+			background: #cadbeb;
+			border-bottom: 1px solid #beceeb;
+		}
+		.acco_title_on {
+		    background-color:#beceeb;
+		}
+		.acco_content{
+			height: 0;
+			padding: 0 10px;
+			overflow: hidden;
+			transition: all .5s ease-out;
+			-webkit-transition: all .5s ease-in;
+			-moz-transition: all .5s ease-in;
+		}
+	</style>
+</head>
+<body>
+<div class="acco_box">
+    <div class="acco_title acco_title_on" lang="accoContent_1">► 一个普通的文本的段落</div>
+    <div id="accoContent_1" class="acco_content" style="height:140px;">
+        <p>黄药师选婿，让郭靖和欧阳克各写一篇作文。郭靖绞尽脑汁写足五百字，心头惴惴，不料欧阳克只写了一百四十字，郭靖轻松获胜。欧阳锋大怒，一耳光甩在欧阳克脸上："s b！叫你天天写微博！" </p>
+    </div>
+    <div class="acco_title" lang="accoContent_2">► 一个有个小图的段落</div>
+    <div id="accoContent_2" class="acco_content">
+        <p><img class="headimg" src="http://image.zhangxinxu.com/image/study/head/s50/20.jpeg" />11月24日消息，盛大旗下网站游玩网(www.uvan.com)将于11月25日正式改名为切客网，并启动新域名www.qieke.com。这也意味着游玩网将从原来的旅游社区进一步向LBS方向转型。 游玩网于今年8月正式公测，融入了微博功能，并提供基于位置的服务(LBS)，是典型的"Twitter+Foursquare"模式。 </p>
+    </div>
+    <div class="acco_title" lang="accoContent_3">► 纯粹两段文字</div>
+    <div id="accoContent_3" class="acco_content">
+        <p>FlowReaer今天已经在App Store上架了，请各位未越狱的朋友到App Store免费下载。</p>
+        <p>这个应用和新版的QQ阅读有点像，算是中文版的Flipboard应用，Flipboard支持的是Twitter，FlowReaer则支持新浪微博。</p>
+    </div>
+    <script type="text/javascript">
+    // 简单的类／id选择器实现
+    var $$ =function(selector){
+    	var cl, id, alls, arrEle = [];
+    	if(/^\./.test(selector)){
+    		cl = selector.replace(".","");
+    		alls = document.getElementsByTagName("*"),
+    		l = alls.length;
+    		for(var i =0; i<l; i+=1){
+    			var name = alls[i].className,
+    				arrName = [];
+    			if(name){
+    				arrName = name.split(" "),
+    				lName = arrName.length;
+    				for( var j=0; j<lName;j+=1){
+    					if(arrName[j] === cl){
+    						arrEle.push(alls[i]);
+    					}
+    				}
+    			}
+    		}
+    	}else if(/^#/.test(selector)){
+    		id = selector.replace("#","");
+    		var o =document.getElementById(id);
+    		if(o){
+    			arrEle.push(o);
+    		}
+    	}
+    	return arrEle;
+    };
+
+    // 添加点击事件
+    Array.prototype.click = function(fn){
+    	var l = this.length;
+    	if(l){
+    		for(var i=0; i<l; i+=1){
+    			this[i].onclick = function(){
+    				fn.call(this);
+    			}
+    		}
+    	}
+    }
+
+    
+    //执行点击
+    $$(".acco_title").click(function(){
+    	var rel = this.lang,
+    		cl = this.className,
+    		oOn = $$(".acco_title_on")[0],
+    		rel_on = oOn.lang;
+    		if(!/on/.test(cl) && rel && rel_on){
+    			$$("#" + rel)[0].style.height = "140px";
+    			$$("#" + rel_on)[0].style.height = "0";
+    			this.className = "acco_title acco_title_on";
+    			oOn.className = "acco_title";
+    		}
+    });
+    
+    </script>
+</div>
+</body>
+</html>
