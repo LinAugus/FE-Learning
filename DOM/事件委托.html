@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>事件委托</title>
+</head>
+<body>
+<ul id="ul-item">
+	<li>item1</li>
+	<li>item2</li>
+	<li>item3</li>
+	<li>item4</li>
+</ul>
+<script type="text/javascript">
+// (function(){
+//     var oUlItem = document.getElementById('ul-item');
+//     var oLi = oUlItem.getElementsByTagName('li');
+//     for(var i=0, l = oLi.length; i < l; i++){
+//         oLi[i].addEventListener('click',show);
+//     };
+//     function show(e){
+//     	e = e || window.event;
+//         alert(e.target.innerHTML);
+//     };
+// })();
+
+(function(){
+    var oUlItem = document.getElementById('ul-item');
+    oUlItem.addEventListener('click',show);
+    function show(e){
+    	e = e || window.event;
+    	var src = e.target;
+        if(src.nodeName.toLowerCase() === 'li'){
+            alert(src.innerHTML);
+        }
+    }
+})();
+</script>
+</body>
+</html>

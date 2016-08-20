@@ -64,6 +64,7 @@
 		if( oBox && lTrigger){
 			for(var i =0; i< lTrigger; i+=1){
 				oTrigger[i].onclick = function(){
+			-webkit-transition: all 1s ease-out; 
 					var index = Number(this.href.replace(/.*#/g,"")) || 1;
 					oBox.style.marginLeft = (1-index)*400 + 'px';
 					return false;
