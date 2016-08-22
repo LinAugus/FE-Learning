@@ -13,17 +13,17 @@
 	<li>item4</li>
 </ul>
 <script type="text/javascript">
-// (function(){
-//     var oUlItem = document.getElementById('ul-item');
-//     var oLi = oUlItem.getElementsByTagName('li');
-//     for(var i=0, l = oLi.length; i < l; i++){
-//         oLi[i].addEventListener('click',show);
-//     };
-//     function show(e){
-//     	e = e || window.event;
-//         alert(e.target.innerHTML);
-//     };
-// })();
+(function(){
+    var oUlItem = document.getElementById('ul-item');
+    var oLi = oUlItem.getElementsByTagName('li');
+    for(var i=0, l = oLi.length; i < l; i++){
+        oLi[i].addEventListener('click',show);
+    };
+    function show(e){
+    	e = e || window.event;
+        alert(e.target.innerHTML);
+    };
+})();
 
 (function(){
     var oUlItem = document.getElementById('ul-item');

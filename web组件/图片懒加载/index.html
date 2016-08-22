@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>图片懒加载</title>
+	<style type="text/css">
+	img{
+		width: 100%;
+		margin-bottom: 30px;
+		min-height: 400px;
+		background-color: #ddd;
+	}
+	</style>
+	<script src="jquery-1.12.3.min.js"></script>
+</head>
+<body>
+	<img src="" lazyload = "imgs/1.jpg">
+	<img src="" lazyload = "imgs/2.jpg">
+	<img src="" lazyload = "imgs/3.jpg">
+	<img src="" lazyload = "imgs/4.jpg">
+	<img src="" lazyload = "imgs/5.jpg">
+	<img src="" lazyload = "imgs/6.jpg">
+	<img src="" lazyload = "imgs/7.jpg">
+	<script type="text/javascript">
+		var imgNum = document.getElementsByTagName('img').length,
+			imgObj = document.getElementsByTagName('img');
+		var l = 0;
+		window.onscroll = function(){
+			var seeHeight = document.documentElement.clientHeight; // 返回根节点的可视高度
+			var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+			console.log(seeHeight + ' '+scrollTop);
+			for(var i = l; i < imgNum; i+=1){
+				if(imgObj[i].offsetTop < seeHeight + scrollTop){
+					console.log(imgObj[i].offsetTop);
+					console.log(imgObj[i].getAttribute("src"));
+					console.log(imgObj[i].src);
+					if(imgObj[i].getAttribute("src") == ""){
+						imgObj[i].src = imgObj[i].getAttribute("lazyload");
+					}
+				}
+				if(imgObj[i].offsetTop > seeHeight + scrollTop){
+					l = i;
+					break;
+				}
+			}
+		}
+
+		/* jq */
+		// var l = 0;
+		// $(window).bind("scroll",function(evt){
+		// 	for(var i = l , k = $("img").length; i < k; i+=1){
+				
+		// 		if($("img").eq(i).offset().top < $(window).height()+$(window).scrollTop()){
+		// 			if($("img").eq(i).attr("src") == ""){
+		// 				var lazyloadsrc = $('img').eq(i).attr("lazyload");
+		// 				$('img').eq(i).attr('src',lazyloadsrc);
+		// 			}
+		// 		}
+		// 		if($('img').eq(i).offset().top > $(window).height()+$(window).scrollTop()){
+		// 			l = i;
+		// 			break;
+		// 		}
+		// 	}
+		// });
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
