@@ -21,8 +21,7 @@ App.controller('home', function (page) {
     $container = $(page).find('#js-story-container');
 
     // 获取数据
-    $.getJSON('/api/4/news/latest',function(data){
-        console.log(data);
+    $.getJSON('/api/4/news/before/20160512',function(data){
         if(data.stories && data.stories.length){
             for (var i = 0 ,n = data.stories.length; i < n; i++){
                 var tplData ={
@@ -39,11 +38,10 @@ App.controller('home', function (page) {
 App.controller('detail', function (page, args) {
      $.getJSON('/api/4/news/' + args.id, function (data) {
         var body = $(data.body);
-        body.find('img').each(function (i, img) {
+        body.find('img').each(function(i, img){
             var ndImg = $(img);
             ndImg.attr('src', getImgProxyUrl(ndImg.attr('src')));
         });
-
         $(page).find('.js-story-title').html(data.title);
         $(page).find('.js-story-cover').attr('src', getImgProxyUrl(data.image));
         $(page).find('.js-comment-button').attr('data-target-args', JSON.stringify(args));
@@ -51,12 +49,12 @@ App.controller('detail', function (page, args) {
     });
 });
 
+
 App.controller('comment', function (page, args) {
     $container = $(page).find('#js-comment-container');
     $template = $(page).find('#js-comment-template');
 
     $.getJSON('/api/4/news/' + args.id + '/long-comments', function (data) {
-        console.log(data);
 
         if (data.comments && data.comments.length) {
             for (var i = 0, n = data.comments.length; i < n; i++) {
@@ -73,6 +71,7 @@ App.controller('comment', function (page, args) {
         }
     });
 });
+
 
 
 try {

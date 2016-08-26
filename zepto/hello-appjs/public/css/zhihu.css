@@ -10,7 +10,7 @@
 }
 .media-figure {
     margin-right:1em;
-    width: 100px;
+    width: 60px;
 }
 .media-body {
     -webkit-box-flex:1;
@@ -37,23 +37,27 @@
     order:1;
     margin:0 0 0 .5em;
 }
-.app-list.story{
-    height: 100px;
+li.story.app-button{
+    height: 70px;
+    line-height: 70px;
 }
-.story-cover {
+.story-cover{
     width: 100%;
 }
-
-.story-content p {
-    margin: 10px 0;
+.story-content p{
     line-height: 1.5em;
-    text-indent: 2em;
 }
-
-.story-content .content-image {
-    width: 90%;
+.main-wrap.content-wrap {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 20px;
 }
-
+.content-inner {
+    padding: 1em;
+}
+.content p > .content-image{
+    width: 100%;
+}
 .button-strip {
     position: fixed;
     bottom: 0;

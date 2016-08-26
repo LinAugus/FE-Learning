@@ -15,16 +15,15 @@
         </div>
         <div class="app-content">
 
-            <script type="text/x-template" id ="js-story-template">
-                <li class="story app-button" data-target="detail" data-target-args="{"id":${id}}">
-                        <div class="media">
-                            <img class="media-figure" src="${image}" />
-                            <div class="media-body">
-                                <h3 class="media-title">${title}</h3>
-                                <p></p>
-                            </div>
+            <script type="text/x-template" id="js-story-template">
+                <li class="story app-button" data-target="detail" data-target-args='{"id":${id}}'>
+                    <div class="media media--center">
+                        <img class="media-figure" src="${image}" />
+                        <div class="media-body">
+                            <p class="media-content">${title}</p>
                         </div>
-                    </li>
+                    </div>
+                </li>
             </script>
 
             <div class="app-section-stories">
@@ -46,7 +45,7 @@
     <div class="app-page" data-page="detail">
         <div class="app-topbar">
             <div class="app-button left" data-back data-autotitle></div>
-            <div class="app-title">详情页</div>
+            <div class="app-title js-story-title">详情页</div>
         </div>
         <div class="app-content">
          <img class="js-story-cover story-cover" />
@@ -57,12 +56,14 @@
             </div>
         </div>
     </div>
+
     <div class="app-page" data-page="comment">
         <div class="app-topbar">
             <div class="app-button left" data-back data-autotitle></div>
             <div class="app-title">查看评价</div>
         </div>
         <div class="app-content">
+        
             <script type="text/x-template" id="js-comment-template">
                 <div class="comment">
                     <div class="media">
@@ -86,6 +87,7 @@
 
         </div>
     </div>
+
 
     <script src="js/zepto.js"></script>
     <script src="js/app.min.js"></script>
