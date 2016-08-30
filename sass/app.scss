@@ -1,0 +1,25 @@
+$fontStack : Helvetica, sans-serif;
+$primaryColor: #333;
+
+body {
+    font-family: $fontStack;
+    color: $primaryColor;
+}
+
+.container {
+    width: 980px;
+    height: 200px;
+    background: #eee;
+    p {
+        font-size: 20px;
+        color: blue;
+    }
+    a {
+        font-size: 40px;
+        color: red;
+        &:hover {
+            color: green;
+        }
+    }
+
+}

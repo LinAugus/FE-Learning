@@ -1,0 +1,18 @@
+body {
+  font-family: Helvetica, sans-serif;
+  color: #333; }
+
+.container {
+  width: 980px;
+  height: 200px;
+  background: #eee; }
+  .container p {
+    font-size: 20px;
+    color: blue; }
+  .container a {
+    font-size: 40px;
+    color: red; }
+    .container a:hover {
+      color: green; }
+
+/*# sourceMappingURL=app.css.map */
